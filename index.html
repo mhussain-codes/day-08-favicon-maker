@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7f5">
+  <meta name="description" content="Create a crisp favicon from text, initials, or emoji. Preview common sizes and export SVG or PNG files locally.">
+  <title>Favicon Foundry — Make a favicon in minutes</title>
+  <style>
+    :root{color-scheme:light;--ink:#152923;--muted:#66766f;--line:#dce5df;--paper:#fff;--wash:#f4f7f5;--green:#237a58;--mint:#e8f4ed;--shadow:0 18px 50px #18382b12}
+    *{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}
+    .top{height:68px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(24px,calc((100vw - 1120px)/2));background:#ffffffc9}
+    .brand{display:flex;gap:11px;align-items:center;font-weight:750;letter-spacing:-.03em}.brand-mark{width:34px;height:34px;border-radius:11px;background:#1f7554;color:#fff;display:grid;place-items:center;font-size:17px}.top-note{font-size:13px;color:var(--muted)}
+    main{max-width:1120px;margin:auto;padding:55px 24px 72px}.eyebrow{font-size:12px;font-weight:750;letter-spacing:.13em;text-transform:uppercase;color:var(--green)}h1{font-size:clamp(34px,5vw,54px);line-height:1.05;letter-spacing:-.055em;margin:11px 0 14px}.intro{color:var(--muted);max-width:610px;font-size:17px;margin:0 0 32px}
+    .workspace{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(330px,.92fr);gap:20px;align-items:start}.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.controls{padding:25px}.preview{padding:25px;position:sticky;top:18px}
+    .panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.panel-head h2{font-size:17px;letter-spacing:-.02em;margin:0}.quiet{font-size:12px;color:var(--muted)}
+    .field{margin:0 0 19px}.field label,.label{display:block;font-size:13px;font-weight:650;margin-bottom:7px}.field-help{font-size:12px;color:var(--muted);margin-top:5px}.text-control,.select-control{width:100%;height:44px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);padding:0 12px;outline:none}.text-control:focus,.select-control:focus,input[type=color]:focus-visible,button:focus-visible{outline:3px solid #78b9987a;outline-offset:2px}.color-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.color-field{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:6px 9px}.color-field input{width:30px;height:30px;padding:0;border:0;background:transparent}.color-field span{font-size:13px;color:var(--muted)}.color-field code{margin-left:auto;font-size:12px;color:var(--ink)}
+    .range-line{display:flex;align-items:center;gap:12px}.range-line input{width:100%;accent-color:var(--green)}.range-value{min-width:42px;text-align:right;font-size:12px;color:var(--muted)}.toggle-line{display:flex;gap:9px;align-items:center;font-size:13px}.toggle-line input{accent-color:var(--green);width:16px;height:16px}
+    .actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:23px}.btn{height:42px;padding:0 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font-weight:650;font-size:13px}.btn:hover{background:#f7faf8}.btn.primary{border-color:var(--green);background:var(--green);color:#fff}.btn.primary:hover{background:#185f42}.btn:disabled{opacity:.55;cursor:wait}
+    .artboard{min-height:250px;border:1px dashed #cbd8cf;border-radius:15px;background-color:#fbfdfb;background-image:linear-gradient(45deg,#edf2ee 25%,transparent 25%),linear-gradient(-45deg,#edf2ee 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#edf2ee 75%),linear-gradient(-45deg,transparent 75%,#edf2ee 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0;display:grid;place-items:center;overflow:hidden}.hero-icon{width:142px;height:142px;filter:drop-shadow(0 11px 18px #193a2d23)}.sizes{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:17px}.size-card{border:1px solid var(--line);border-radius:11px;padding:10px 5px 8px;text-align:center;background:#fff}.size-preview{height:46px;display:grid;place-items:center}.size-preview img{max-width:44px;max-height:44px;image-rendering:auto}.size-label{font-size:11px;font-weight:650;margin-top:5px}.size-purpose{font-size:10px;color:var(--muted)}.codebox{margin-top:20px}.code-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}.codebox pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f6f8f6;border:1px solid var(--line);border-radius:10px;padding:12px;font:11px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:#46594f;margin:0;max-height:118px;overflow:auto}.small-btn{border:0;background:transparent;color:var(--green);font-size:12px;font-weight:700;padding:5px}.notice{min-height:18px;color:var(--green);font-size:12px;margin-top:8px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:27px}.step{background:#edf3ef;border-radius:13px;padding:15px}.step b{display:block;font-size:13px;margin-bottom:4px}.step span{font-size:12px;color:var(--muted)}footer{border-top:1px solid var(--line);padding:21px 24px;text-align:center;color:var(--muted);font-size:12px}
+    @media(max-width:780px){main{padding-top:38px}.workspace{grid-template-columns:1fr}.preview{position:static}.steps{grid-template-columns:1fr}.top-note{display:none}}@media(max-width:410px){main{padding-left:14px;padding-right:14px}.controls,.preview{padding:18px}.sizes{gap:5px}.size-purpose{font-size:9px}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="brand"><span class="brand-mark" aria-hidden="true">✳</span> Favicon Foundry</div><div class="top-note">A tiny detail that makes your site feel finished.</div></header>
+  <main>
+    <div class="eyebrow">Free browser tool · No upload</div>
+    <h1>Give your website its little icon.</h1>
+    <p class="intro">Turn a letter, short name, or emoji into a favicon set. Tune the colors, check it at real sizes, then download files for your site.</p>
+    <div class="workspace">
+      <section class="panel controls" aria-labelledby="design-title">
+        <div class="panel-head"><h2 id="design-title">Design your icon</h2><span class="quiet">Changes update live</span></div>
+        <div class="field"><label for="mark">Text, initials, or emoji</label><input class="text-control" id="mark" maxlength="4" value="HF" autocomplete="off" aria-describedby="mark-help"><div class="field-help" id="mark-help">Keep it short so it stays readable in a browser tab.</div></div>
+        <div class="color-row field"><div><label class="label" for="background">Background</label><div class="color-field"><input id="background" type="color" value="#237a58" aria-label="Background color"><span>Fill</span><code id="background-value">#237A58</code></div></div><div><label class="label" for="foreground">Mark color</label><div class="color-field"><input id="foreground" type="color" value="#ffffff" aria-label="Text or emoji color"><span>Text</span><code id="foreground-value">#FFFFFF</code></div></div></div>
+        <div class="field"><label for="shape">Shape</label><select id="shape" class="select-control"><option value="rounded">Rounded square</option><option value="square">Square</option><option value="circle">Circle</option></select></div>
+        <div class="field"><label for="font">Letter style</label><select id="font" class="select-control"><option value="system-ui, sans-serif">Modern sans</option><option value="Georgia, serif">Classic serif</option><option value="ui-monospace, monospace">Monospace</option></select></div>
+        <div class="field"><label for="padding">Mark size</label><div class="range-line"><input id="padding" type="range" min="10" max="38" value="22"><span class="range-value" id="padding-value">78%</span></div></div>
+        <label class="toggle-line"><input id="bold" type="checkbox" checked> Use a bold mark</label>
+        <div class="actions"><button class="btn primary" id="download-png">Download PNG</button><button class="btn" id="download-svg">Download SVG</button><button class="btn" id="download-manifest">Download manifest</button></div>
+        <div class="notice" id="notice" role="status" aria-live="polite"></div>
+      </section>
+      <section class="panel preview" aria-labelledby="preview-title">
+        <div class="panel-head"><h2 id="preview-title">Live preview</h2><span class="quiet">No files leave your device</span></div>
+        <div class="artboard"><img class="hero-icon" id="hero" alt="Preview of your favicon"></div>
+        <div class="sizes" id="sizes" aria-label="Preview at common favicon sizes"></div>
+        <div class="codebox"><div class="code-head"><span class="label">Add this to your page’s &lt;head&gt;</span><button class="small-btn" id="copy-code">Copy code</button></div><pre id="snippet"></pre></div>
+      </section>
+    </div>
+    <section class="steps" aria-label="How to use your favicon"><div class="step"><b>1. Make it yours</b><span>Choose a mark, palette, shape, and text size.</span></div><div class="step"><b>2. Export the files</b><span>Download a scalable SVG, PNG, or web manifest.</span></div><div class="step"><b>3. Add it to your site</b><span>Place files in your site folder and use the provided HTML snippet.</span></div></section>
+  </main>
+  <footer>Favicon Foundry · Runs locally in your browser · No tracking or external libraries</footer>
+  <script>
+    (()=>{
+      const $=id=>document.getElementById(id), ids=['mark','background','foreground','shape','font','padding','bold'];
+      const escapeXml=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
+      const colorHex=id=>$(id).value.toUpperCase();
+      const getSvg=(size=512)=>{
+        const text=$('mark').value.trim()||' '; const inset=Number($('padding').value); const box=512*inset/100; const center=256;
+        const radius=$('shape').value==='circle'?256:$('shape').value==='square'?0:Math.round(512*.22);
+        const shape=$('shape').value==='circle'?`<circle cx="256" cy="256" r="256" fill="${colorHex('background')}"/>`:`<rect width="512" height="512" rx="${radius}" fill="${colorHex('background')}"/>`;
+        const weight=$('bold').checked?'700':'500'; const font=escapeXml($('font').value); const fontSize=box*1.55;
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 512 512">${shape}<text x="${center}" y="${center}" text-anchor="middle" dominant-baseline="central" fill="${colorHex('foreground')}" font-family="${font}" font-size="${fontSize}" font-weight="${weight}" letter-spacing="-12">${escapeXml(text)}</text></svg>`;
+      };
+      const svgUrl=()=>URL.createObjectURL(new Blob([getSvg()],{type:'image/svg+xml;charset=utf-8'}));
+      const update=()=>{
+        $('background-value').textContent=colorHex('background');$('foreground-value').textContent=colorHex('foreground');$('padding-value').textContent=`${100-Number($('padding').value)}%`;
+        const url=svgUrl();$('hero').src=url; $('hero').onload=()=>URL.revokeObjectURL(url);
+        $('snippet').textContent='<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">\n<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n<link rel="manifest" href="/site.webmanifest">';
+        const sizes=[16,32,48,180,192];const host=$('sizes');host.replaceChildren();
+        sizes.forEach(n=>{const card=document.createElement('div');card.className='size-card';const holder=document.createElement('div');holder.className='size-preview';const image=document.createElement('img');const u=svgUrl();image.src=u;image.width=Math.min(n,44);image.height=Math.min(n,44);image.alt='';image.onload=()=>URL.revokeObjectURL(u);holder.append(image);const label=document.createElement('div');label.className='size-label';label.textContent=`${n} × ${n}`;const purpose=document.createElement('div');purpose.className='size-purpose';purpose.textContent=n===16?'tab':n===32?'desktop':n===48?'shortcut':n===180?'Apple':'Android';card.append(holder,label,purpose);host.append(card)});
+      };
+      const download=(name,blob)=>{const a=document.createElement('a');const u=URL.createObjectURL(blob);a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000)};
+      const manifest=()=>JSON.stringify({name:'My Website',short_name:$('mark').value.trim()||'Site',icons:[{src:'/favicon-192.png',sizes:'192x192',type:'image/png'},{src:'/favicon-512.png',sizes:'512x512',type:'image/png'}],theme_color:colorHex('background'),background_color:colorHex('background'),display:'standalone'},null,2);
+      $('download-svg').addEventListener('click',()=>download('favicon.svg',new Blob([getSvg()],{type:'image/svg+xml'})));
+      $('download-manifest').addEventListener('click',()=>download('site.webmanifest',new Blob([manifest()],{type:'application/manifest+json'})));
+      $('download-png').addEventListener('click',async e=>{const b=e.currentTarget;b.disabled=true;try{const image=await createImageBitmap(new Blob([getSvg(512)],{type:'image/svg+xml'}));const canvas=document.createElement('canvas');canvas.width=512;canvas.height=512;canvas.getContext('2d').drawImage(image,0,0,512,512);image.close();canvas.toBlob(blob=>{if(blob)download('favicon-512.png',blob);b.disabled=false},'image/png')}catch(err){$('notice').textContent='PNG export failed in this browser. Try SVG export instead.';b.disabled=false}});
+      $('copy-code').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('snippet').textContent);$('notice').textContent='HTML snippet copied.'}catch{$('notice').textContent='Clipboard access is unavailable. Select and copy the snippet above.'}});
+      ids.forEach(id=>$(id).addEventListener('input',update));update();
+    })();
+  </script>
+</body>
+</html>
